@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Call me demo page</title>
+        <link rel="stylesheet" href="css/callme.css" type="text/css" />
+    </head>
+    <body>
+        <a class="call-me-button" data-call-me="#call-me">Call me!</a>
+        <div id="call-me" class="call-me">
+            <header>
+                Оставьте заявку и с Вами свяжется наш менеджер
+            </header>
+            <form action="mail.php" method="get">
+                <input type="text" name="name" required="true" placeholder="Введите имя" />
+                <input type="tel" name="phone" required="true" placeholder="Введите телефон" />
+
+                <input type="submit" value="Оставить заявку" />
+            </form>
+            <div class="call-me-messages"></div>
+            <footer>
+                Ваши данные не будут переданы третьим лицам
+            </footer>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.easyModal.js"></script>
+        <script src="js/jquery.callMe.js"></script>
+        <script>
+            $(function() {
+                $('.call-me-button').callMe();
+            });
+        </script>
+    </body>
+</html>

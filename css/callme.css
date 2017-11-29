@@ -1,0 +1,75 @@
+.call-me-button {
+    display: inline-block;
+    background: #336600;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 16px;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+.call-me-button:hover {
+    background: #5c8f48;
+    cursor: pointer;
+}
+
+.call-me-button::before {
+    display: inline-block;
+    content: "\02706";
+    margin: 0 8px 0 0;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.call-me {
+    max-width: 300px;
+    font-size: 16px;
+    padding: 1em;
+    background: #eee;
+    border-radius: 3px;
+}
+
+.call-me header {
+    text-align: center;
+}
+
+.call-me input {
+    box-sizing: border-box;
+    font-size: 1.2em;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    display: block;
+    width: 100%;
+    border: 1px solid #cddad0;
+    border-radius: 0.2em;
+}
+
+.call-me input[type=submit] {
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    background: #336600;
+    color: #fff;
+    text-align: center;
+}
+
+.call-me input[type=submit]:hover {
+    cursor: pointer;
+    background: #5c8f48;
+}
+
+.call-me .call-me-messages {
+    text-align: center;
+}
+
+.call-me .call-me-messages .call-me-failure {
+    color: red;
+}
+
+.call-me footer {
+    margin: 1em 0 0 0;
+    color: #a9a9a9;
+    font-size: 0.8em;
+    text-align: center;
+}
