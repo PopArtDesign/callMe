@@ -17,19 +17,21 @@
         var target = options.target || $this.data('call-me') || $this.attr('href');
 
         if (!target) {
-            throw new TypeError('Call me: tagret not found.');
+            target = this;
         }
 
         var $target = $(target);
         var $messageContainer = $target.find('.call-me-messages');
 
-        var $modal = $(target).easyModal();
-        $this.click(function(e) {
-            e.preventDefault();
-            $modal.trigger('openModal');
-        });
+        if (target !== this) {
+            var $modal = $(target).easyModal();
+            $this.click(function(e) {
+                e.preventDefault();
+                $modal.trigger('openModal');
+            });
+        }
 
-        var $form = $(target + ' form');
+        var $form = $(target).find('form').first();
 
         if (!$form.data('call-me-enabled')) {
             $form.submit(function(e) {
