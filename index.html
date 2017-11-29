@@ -6,29 +6,52 @@
         <title>Call me demo page</title>
         <link rel="stylesheet" href="css/callme.css" type="text/css" />
     </head>
-    <body>
-        <a class="call-me-button" data-call-me="#call-me">Call me!</a>
-        <div id="call-me" class="call-me">
-            <header>
-                Оставьте заявку и с Вами свяжется наш менеджер
-            </header>
-            <form action="mail.php" method="get">
-                <input type="text" name="name" required="true" placeholder="Введите имя" />
-                <input type="tel" name="phone" required="true" placeholder="Введите телефон" />
+    <body style="width: 80%; margin-left: 10%; float: left">
+        <div style="float: left; width: 50%; margin-right: 0">
+            <h2>Пример с модальным окном</h2>
+            <!-- В атрибуте data-call-me нужно указать css-селектор элемента, содержащего форму -->
+            <a class="call-me-button" data-call-me="#call-me">Call me!</a>
+            <div id="call-me" class="call-me">
+                <header>
+                    Оставьте заявку и с Вами свяжется наш менеджер
+                </header>
+                <form action="http://localhost:8000/mail.php" method="get">
+                    <input type="text" name="name" required="true" placeholder="Введите имя" />
+                    <input type="tel" name="phone" required="true" placeholder="Введите телефон" />
 
-                <input type="submit" value="Оставить заявку" />
-            </form>
-            <div class="call-me-messages"></div>
-            <footer>
-                Ваши данные не будут переданы третьим лицам
-            </footer>
+                    <input type="submit" value="Оставить заявку" />
+                </form>
+                <div class="call-me-messages"></div>
+                <footer>
+                    Ваши данные не будут переданы третьим лицам
+                </footer>
+            </div>
+        </div>
+        <div style="float: left; width: 50%;">
+           <h2>Пример без модального окна</h2>
+            <!-- Если атрибут data-call-me пуст, форма будет использоваться без модального окна -->
+            <div id="call-me-no-modal" class="call-me" data-call-me>
+                <header>
+                    Оставьте заявку и с Вами свяжется наш менеджер
+                </header>
+                <form action="http://localhost:8000/mail.php" method="get">
+                    <input type="text" name="name" required="true" placeholder="Введите имя" />
+                    <input type="tel" name="phone" required="true" placeholder="Введите телефон" />
+
+                    <input type="submit" value="Оставить заявку" />
+                </form>
+                <div class="call-me-messages"></div>
+                <footer>
+                    Ваши данные не будут переданы третьим лицам
+                </footer>
+            </div>
         </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.easyModal.js"></script>
         <script src="js/jquery.callMe.js"></script>
         <script>
             $(function() {
-                $('.call-me-button').callMe();
+                $('[data-call-me]').callMe();
             });
         </script>
     </body>
