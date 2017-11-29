@@ -40,11 +40,13 @@
                     dataType: 'json',
                     success: function(data, textStatus) {
                         if ('undefined' !== typeof data.success && data.success) {
-                            $messageContainer.html('<p class="call-me-success">' + options.successMessage + '</p>');
+                            $target.removeClass('call-me-failure').addClass('call-me-success');
+                            $messageContainer.html('<p class="call-me-message">' + options.successMessage + '</p>');
                             $form[0].reset();
                         } else {
                             var message = data.message || options.failureMessage;
-                            $messageContainer.html('<p class="call-me-failure">' + message + '</p>');
+                            $target.removeClass('call-me-success').addClass('call-me-failure');
+                            $messageContainer.html('<p class="call-me-message">' + message + '</p>');
                         }
                     },
                     error: function() {
