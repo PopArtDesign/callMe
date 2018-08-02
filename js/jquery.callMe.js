@@ -2,7 +2,8 @@
 
     var defaultOptions = {
         successMessage: 'Form was sent successfully!',
-        failureMessage: 'An error has occurred, please try again later!'
+        failureMessage: 'An error has occurred, please try again later!',
+        zIndex: 10000
     };
 
     var init = function(options) {
@@ -14,6 +15,12 @@
 
         options = $.extend(defaultOptions, options);
 
+        var easyModalOptions = {
+            zIndex: function() {
+                return options.zIndex;
+            }
+        };
+
         var target = options.target || $this.data('call-me') || $this.attr('href');
 
         if (!target) {
@@ -24,7 +31,7 @@
         var $messageContainer = $target.find('.call-me-messages');
 
         if (target !== this) {
-            var $modal = $(target).easyModal();
+            var $modal = $(target).easyModal(easyModalOptions);
             $this.click(function(e) {
                 e.preventDefault();
                 $modal.trigger('openModal');

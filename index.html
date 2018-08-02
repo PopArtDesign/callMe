@@ -51,7 +51,11 @@
         <script src="js/jquery.callMe.js"></script>
         <script>
             $(function() {
-                $('[data-call-me]').callMe();
+                $('[data-call-me]').callMe({
+                    successMessage: 'Спасибо! Мы свяжемся с вами в ближайшее время!',
+                    failureMessage: 'Произошла ошибка! Попробуйте отправить форму ещё раз!',
+                    zIndex: 10000
+                });
             });
         </script>
     </body>
