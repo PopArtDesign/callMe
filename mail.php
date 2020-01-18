@@ -1,5 +1,9 @@
 <?php
 
+if ('imnotarobot!' !== $_REQUEST['_secret']) {
+    die(json_encode([ 'success' => false, 'message' => 'Secret value is invalid!' ]));
+}
+
 $name  = trim($_REQUEST['name']);
 $phone = preg_replace('/[^+0-9]/', '', $_REQUEST['phone']);
 

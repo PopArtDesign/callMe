@@ -3,6 +3,7 @@
     var defaultOptions = {
         successMessage: 'Form was sent successfully!',
         failureMessage: 'An error has occurred, please try again later!',
+        secret: 'imnotarobot!',
         zIndex: 10000
     };
 
@@ -41,6 +42,11 @@
         var $form = $(target).find('form').first();
 
         if (!$form.data('call-me-enabled')) {
+
+            if (!$form.children('input[name="_secret"]').length) {
+                $form.append('<input name="_secret" type="hidden" value="' + options.secret + '" />');
+            }
+
             $form.submit(function(e) {
                 e.preventDefault();
                 $.ajax(options.action || $form.attr('action'), {
