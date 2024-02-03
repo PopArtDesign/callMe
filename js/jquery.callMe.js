@@ -49,25 +49,26 @@
 
             $form.submit(function(e) {
                 e.preventDefault();
-                $.ajax(options.action || $form.attr('action'), {
-                    data: $form.serialize(),
+
+                fetch(options.action || $form.attr('action'), {
                     method: $form.attr('method'),
-                    dataType: 'json',
-                    success: function(data, textStatus) {
+                    body: new FormData($form[0]),
+                })
+                    .then(res => res.json())
+                    .then(data => {
                         if ('undefined' !== typeof data.success && data.success) {
                             $target.removeClass('call-me-failure').addClass('call-me-success');
                             $messageContainer.html('<p class="call-me-message">' + options.successMessage + '</p>');
                             $form[0].reset();
                         } else {
-                            var message = data.message || options.failureMessage;
+                            const message = data.message || options.failureMessage;
                             $target.removeClass('call-me-success').addClass('call-me-failure');
                             $messageContainer.html('<p class="call-me-message">' + message + '</p>');
                         }
-                    },
-                    error: function() {
+                    })
+                    .catch(() => {
                         $messageContainer.html('<p class="call-me-failure">' + options.failureMessage + '</p>');
-                    }
-                });
+                    })
             });
 
             $form.data('call-me-enabled', true);

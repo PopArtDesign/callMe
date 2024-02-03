@@ -34,9 +34,10 @@
                 <header>
                     Оставьте заявку и с Вами свяжется наш менеджер
                 </header>
-                <form action="/mail.php" method="post">
+                <form action="/mail.php" method="post" enctype="multipart/form-data">
                     <input type="text" name="name" required="true" placeholder="Введите имя" />
                     <input type="tel" name="phone" required="true" placeholder="Введите телефон" />
+                    <input type="file" name="files[]" required="false" placeholder="Файлы для прикрепления" multiple />
 
                     <input type="submit" value="Оставить заявку" />
                 </form>

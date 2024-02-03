@@ -15,20 +15,24 @@ if (!$name || !$phone) {
     fail('Please fill out all required fields');
 }
 
+$attachments = uploadedFilesToAttachments(['files']);
+// $attachments = [
+//     [ 'path' => __DIR__ . '/mail.php', 'name' => 'mail.php', 'type' => 'text/plain' ]
+// ];
+
 $domain = detectDomain();
 
 $to      = 'user@localhost';
 $from    = 'no-reply@' . $domain;
 $subject = 'Call me from '. $domain;
 $message = "Name: $name, phone: $phone";
+$options = [
+    'sender' => $from,
+    'from'   => $from,
+    'attachments' => $attachments
+];
 
-$headers = [];
-$headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-type: text/plain; charset=UTF-8';
-$headers[] = 'Sender: ' . $from;
-$headers[] = 'From: ' . $from;
-
-if (sendMail($to, $subject, $message, [ 'headers' => $headers ])) {
+if (sendMail($to, $subject, $message, $options)) {
     success();
 } else {
     fail('An error occurred while sending message. Please try again later!');
